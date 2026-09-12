@@ -1,0 +1,1315 @@
+/* ========================================
+   THE GRAND PORTFOLIO VILLA
+   Immersive Portfolio Experience
+   ======================================== */
+
+:root {
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --gold-dark: #8b6914;
+    --wood-dark: #3e2723;
+    --wood-medium: #5d4037;
+    --wood-light: #795548;
+    --mahogany: #6d3a2a;
+    --burgundy: #800020;
+    --cream: #fef8e7;
+    --night-sky: #0a0a1a;
+    --dark-bg: #1a1a0a;
+    --text-light: #f5e6d3;
+    --text-gold: #ffd700;
+    --shadow-dark: rgba(0, 0, 0, 0.8);
+    --door-color: #4a3222;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--night-sky);
+    color: var(--text-light);
+}
+
+/* ========================================
+   PRELOADER
+   ======================================== */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--night-sky);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+    position: relative;
+}
+
+.preloader-text h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(201, 168, 76, 0.2);
+    border-radius: 2px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.loading-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    animation: loading 2s ease-in-out forwards;
+}
+
+@keyframes loading {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+/* ========================================
+   SCENES - Base
+   ======================================== */
+.scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scene.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ========================================
+   SCENE 1: ENTRANCE
+   ======================================== */
+.night-sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        #050510 0%, 
+        #0a0a2e 30%, 
+        #1a1a3e 50%, 
+        #2a1a1a 80%, 
+        #1a0a0a 100%);
+    z-index: 0;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #fff, transparent),
+        radial-gradient(1px 1px at 80px 120px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 150px 80px, #ffd700, transparent),
+        radial-gradient(1px 1px at 200px 180px, #fff, transparent),
+        radial-gradient(1px 1px at 300px 50px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 400px 100px, #ffd700, transparent),
+        radial-gradient(1px 1px at 500px 200px, #fff, transparent),
+        radial-gradient(1px 1px at 600px 150px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 700px 80px, #ffd700, transparent),
+        radial-gradient(1px 1px at 800px 120px, #fff, transparent),
+        radial-gradient(1px 1px at 900px 60px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 1000px 180px, #ffd700, transparent),
+        radial-gradient(1px 1px at 1100px 90px, #fff, transparent),
+        radial-gradient(1px 1px at 1200px 160px, #fff, transparent),
+        radial-gradient(1px 1px at 1300px 40px, #fff, transparent),
+        radial-gradient(1.5px 1.5px at 1400px 130px, #ffd700, transparent);
+    background-size: 1500px 300px;
+    animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+.moon {
+    position: absolute;
+    top: 8%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #fff9c4, #ffecb3, #ffe082);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 40px rgba(255, 236, 179, 0.4),
+        0 0 80px rgba(255, 236, 179, 0.2),
+        0 0 120px rgba(255, 236, 179, 0.1);
+}
+
+.moon::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    width: 65px;
+    height: 65px;
+    background: #0a0a2e;
+    border-radius: 50%;
+}
+
+.entrance-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.villa-facade {
+    position: relative;
+    width: 500px;
+    max-width: 90vw;
+}
+
+.villa-roof {
+    width: 110%;
+    height: 60px;
+    background: linear-gradient(180deg, #2a1a1a, #4a2a2a);
+    margin-left: -5%;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    position: relative;
+    z-index: 2;
+}
+
+.villa-roof::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -10%;
+    right: -10%;
+    height: 15px;
+    background: var(--gold-dark);
+    border-bottom: 3px solid var(--gold);
+}
+
+.villa-wall {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    background: linear-gradient(180deg, #8b7355, #6b5b4a, #5a4a3a);
+    border: 3px solid rgba(201, 168, 76, 0.3);
+    border-top: none;
+    overflow: hidden;
+}
+
+.wall-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(0,0,0,0.1) 49px, rgba(0,0,0,0.1) 50px),
+        repeating-linear-gradient(90deg, transparent, transparent 99px, rgba(0,0,0,0.05) 99px, rgba(0,0,0,0.05) 100px);
+}
+
+/* Torches */
+.torch {
+    position: absolute;
+    top: 80px;
+    width: 20px;
+    height: 60px;
+    z-index: 5;
+}
+
+.left-torch { left: 60px; }
+.right-torch { right: 60px; }
+
+.torch-flame {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 25px;
+    background: radial-gradient(ellipse, #ff6600, #ff4400, transparent);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flame 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes flame {
+    0% { transform: translateX(-50%) scaleY(1) scaleX(1); }
+    25% { transform: translateX(-45%) scaleY(1.1) scaleX(0.9); }
+    50% { transform: translateX(-55%) scaleY(0.9) scaleX(1.1); }
+    75% { transform: translateX(-50%) scaleY(1.15) scaleX(0.95); }
+    100% { transform: translateX(-50%) scaleY(0.95) scaleX(1.05); }
+}
+
+.torch-glow {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.2), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* ========================================
+   THE GRAND DOOR
+   ======================================== */
+.door-frame {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 350px;
+    perspective: 1000px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.door-arch {
+    position: absolute;
+    top: -30px;
+    left: -20px;
+    width: 260px;
+    height: 60px;
+    background: linear-gradient(180deg, var(--gold-dark), var(--gold));
+    border-radius: 130px 130px 0 0;
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.5);
+}
+
+.door-arch::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    right: 20px;
+    height: 50px;
+    border-radius: 110px 110px 0 0;
+    border: 2px solid var(--gold-light);
+    border-bottom: none;
+}
+
+.door-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #5a3a2a, #4a2a1a, #3a1a0a);
+    border: 4px solid #2a1a0a;
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+    overflow: hidden;
+}
+
+.left-door {
+    left: 0;
+    transform-origin: left center;
+    border-right: 2px solid #2a1a0a;
+}
+
+.right-door {
+    right: 0;
+    transform-origin: right center;
+    border-left: 2px solid #2a1a0a;
+}
+
+.door-wood-grain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 20px,
+        rgba(0, 0, 0, 0.05) 20px,
+        rgba(0, 0, 0, 0.05) 21px
+    );
+}
+
+.door-panel-design {
+    position: absolute;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 120px;
+    border: 3px solid #6b4a3a;
+    border-radius: 5px;
+    background: linear-gradient(135deg, rgba(107, 74, 58, 0.3), rgba(90, 58, 42, 0.3));
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.door-panel-design.top { top: 30px; }
+.door-panel-design.bottom { bottom: 80px; }
+
+.door-iron-band {
+    position: absolute;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 8px;
+    background: linear-gradient(180deg, #555, #333, #555);
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.top-band { top: 20px; }
+.middle-band { top: 50%; transform: translateY(-50%); }
+.bottom-band { bottom: 30px; }
+
+.door-handle-container {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.right-door .door-handle-container {
+    right: auto;
+    left: 20px;
+}
+
+.door-ring {
+    width: 25px;
+    height: 25px;
+    border: 4px solid var(--gold);
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.door-ring:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.8);
+}
+
+.door-rivet {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #888, #444);
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.r1 { top: 15px; left: 15px; }
+.r2 { top: 15px; right: 15px; }
+.r3 { bottom: 15px; left: 15px; }
+.r4 { bottom: 15px; right: 15px; }
+
+.door-step {
+    position: absolute;
+    bottom: -15px;
+    left: -30px;
+    width: calc(100% + 60px);
+    height: 15px;
+    background: linear-gradient(180deg, #666, #444);
+    border-radius: 3px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Door Opening Animation */
+.door-frame.opening .left-door {
+    transform: perspective(1000px) rotateY(-110deg);
+}
+
+.door-frame.opening .right-door {
+    transform: perspective(1000px) rotateY(110deg);
+}
+
+/* Knock Prompt */
+.knock-prompt {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 20;
+    animation: promptFloat 2s ease-in-out infinite;
+}
+
+@keyframes promptFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+.knock-hand {
+    font-size: 2rem;
+    animation: knock 1.5s ease-in-out infinite;
+}
+
+@keyframes knock {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-15deg); }
+    40% { transform: rotate(15deg); }
+    60% { transform: rotate(-10deg); }
+    80% { transform: rotate(5deg); }
+}
+
+.knock-prompt span {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+}
+
+.knock-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(201, 168, 76, 0.3);
+    border-radius: 50%;
+    animation: ripple 2s ease-out infinite;
+}
+
+@keyframes ripple {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+/* Knock Effect */
+.knock-effect {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+}
+
+.knock-effect.active {
+    opacity: 1;
+}
+
+.knock-wave {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--gold);
+    border-radius: 50%;
+    animation: knockWave 0.5s ease-out forwards;
+}
+
+@keyframes knockWave {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(5); opacity: 0; }
+}
+
+.entrance-floor {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(180deg, #3a2a1a, #2a1a0a);
+    position: relative;
+}
+
+.floor-reflection {
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(201, 168, 76, 0.1), transparent);
+}
+
+/* ========================================
+   SCENE 2: GRAND GALLERY
+   ======================================== */
+#gallery-scene {
+    background: linear-gradient(180deg, #1a0a00, #2a1a0a, #1a1005);
+}
+
+.gallery-atmosphere {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.dust-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 100px 200px, rgba(255, 215, 0, 0.3), transparent),
+        radial-gradient(1px 1px at 300px 400px, rgba(255, 215, 0, 0.2), transparent),
+        radial-gradient(1px 1px at 500px 100px, rgba(255, 215, 0, 0.3), transparent),
+        radial-gradient(1px 1px at 700px 300px, rgba(255, 215, 0, 0.2), transparent),
+        radial-gradient(1px 1px at 900px 500px, rgba(255, 215, 0, 0.3), transparent);
+    animation: dustFloat 20s linear infinite;
+}
+
+@keyframes dustFloat {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+
+.light-rays {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 215, 0, 0.05), transparent);
+    transform: translateX(-50%);
+    clip-path: polygon(40% 0%, 60% 0%, 70% 100%, 30% 100%);
+}
+
+.gallery-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    z-index: 1;
+}
+
+/* Chandelier */
+.chandelier {
+    position: relative;
+    width: 200px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+.chandelier-chain {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(90deg, #888, #aaa, #888);
+}
+
+.chandelier-body {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--gold-dark), var(--gold));
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(201, 168, 76, 0.3);
+}
+
+.chandelier-arm {
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+.candle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 20px;
+    background: linear-gradient(180deg, #fff9c4, #ffecb3);
+    border-radius: 2px 2px 0 0;
+}
+
+.flame {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 12px;
+    background: radial-gradient(ellipse, #ffcc00, #ff6600, transparent);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flame 0.3s ease-in-out infinite alternate;
+    filter: blur(1px);
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.gallery-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    text-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+}
+
+.gallery-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    opacity: 0.8;
+    letter-spacing: 2px;
+}
+
+/* Rooms Grid */
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.room-card {
+    position: relative;
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-10px);
+}
+
+.room-door-frame {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 220px;
+    border: 4px solid var(--gold-dark);
+    border-radius: 70px 70px 0 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, #2a1a0a, #1a0a00);
+}
+
+.room-door {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--door-color), #3a2218, #2a1a10);
+    transition: transform 0.5s ease;
+    transform-origin: bottom center;
+}
+
+.room-card:hover .room-door {
+    transform: perspective(800px) rotateX(15deg);
+    box-shadow: 0 -10px 30px rgba(255, 165, 0, 0.2);
+}
+
+.room-door-wood {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(0deg, transparent, transparent 29px, rgba(0,0,0,0.05) 29px, rgba(0,0,0,0.05) 30px),
+        linear-gradient(135deg, rgba(255,255,255,0.02), transparent);
+}
+
+.room-door-handle {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, var(--gold), var(--gold-dark));
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+}
+
+.room-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0.3;
+    text-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+}
+
+.room-preview {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+}
+
+.room-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+.room-preview h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 5px;
+}
+
+.room-preview p {
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    opacity: 0.7;
+}
+
+.room-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 165, 0, 0), rgba(255, 165, 0, 0) 70%);
+    transition: background 0.5s ease;
+    pointer-events: none;
+    border-radius: 10px;
+}
+
+.room-card:hover .room-glow {
+    background: radial-gradient(circle at center, rgba(255, 165, 0, 0.1), rgba(255, 165, 0, 0) 70%);
+}
+
+/* Back Buttons */
+.back-btn, .room-back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 12px 24px;
+    background: rgba(26, 10, 0, 0.8);
+    border: 2px solid var(--gold-dark);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    backdrop-filter: blur(5px);
+}
+
+.back-btn:hover, .room-back-btn:hover {
+    background: rgba(201, 168, 76, 0.2);
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+}
+
+/* ========================================
+   SCENE 3: ROOM CONTENT
+   ======================================== */
+#room-scene {
+    background: linear-gradient(180deg, #1a0a00, #2a1a0a);
+}
+
+.room-atmosphere {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at top, rgba(201, 168, 76, 0.05), transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(139, 69, 19, 0.1), transparent 50%);
+    pointer-events: none;
+}
+
+.room-content-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 80px 40px 40px;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+/* Room Header */
+.room-header {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.room-header-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+}
+
+.room-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+}
+
+.room-header p {
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Decorative Divider */
+.divider {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 30px auto;
+}
+
+/* Content Sections */
+.room-section {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* Cards */
+.content-card {
+    background: linear-gradient(135deg, rgba(42, 26, 10, 0.8), rgba(26, 10, 0, 0.9));
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+}
+
+.content-card:hover {
+    transform: translateX(5px);
+    border-color: rgba(201, 168, 76, 0.4);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.card-subtitle {
+    font-size: 1rem;
+    color: var(--gold-light);
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
+
+.card-date {
+    font-size: 0.9rem;
+    color: var(--gold-dark);
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+/* Achievement Badges */
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.achievement-badge {
+    background: linear-gradient(135deg, rgba(42, 26, 10, 0.8), rgba(26, 10, 0, 0.9));
+    border: 2px solid rgba(201, 168, 76, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.achievement-badge:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(201, 168, 76, 0.2);
+}
+
+.badge-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+.badge-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    margin-bottom: 5px;
+}
+
+.badge-year {
+    font-size: 0.9rem;
+    color: var(--gold-dark);
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), var(--gold-dark), transparent);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+    animation: fadeInLeft 0.5s ease-out;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -33px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.5);
+}
+
+.timeline-date {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--gold-dark);
+    margin-bottom: 5px;
+}
+
+.timeline-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 5px;
+}
+
+.timeline-company {
+    font-size: 1rem;
+    color: var(--gold-light);
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
+
+.timeline-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+/* Project Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: linear-gradient(135deg, rgba(42, 26, 10, 0.8), rgba(26, 10, 0, 0.9));
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(201, 168, 76, 0.2);
+}
+
+.project-image {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #3a2a1a, #2a1a0a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+
+.project-tech {
+    font-size: 0.85rem;
+    color: var(--gold-dark);
+    margin-bottom: 10px;
+}
+
+.project-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-light);
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.project-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: #1a0a00;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    box-shadow: 0 5px 15px rgba(201, 168, 76, 0.3);
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg, #3a2a1a, #2a1a0a);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(201, 168, 76, 0.2);
+}
+
+.gallery-placeholder {
+    font-size: 4rem;
+    opacity: 0.5;
+}
+
+.gallery-item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+    transform: translateY(0);
+}
+
+.gallery-item-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--gold);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(26, 10, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold-dark);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+    .gallery-title {
+        font-size: 1.8rem;
+    }
+    
+    .rooms-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .room-card {
+        height: 250px;
+    }
+    
+    .room-door-frame {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .room-header h1 {
+        font-size: 2rem;
+    }
+    
+    .content-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rooms-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-title {
+        font-size: 1.5rem;
+    }
+    
+    .room-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .room-content-container {
+        padding: 70px 20px 20px;
+    }
+}

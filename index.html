@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Grand Portfolio Villa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:wght@300;400;500;600&family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-torch left"></div>
+            <div class="preloader-torch right"></div>
+            <div class="preloader-text">
+                <h2>Preparing Your Experience</h2>
+                <div class="loading-bar">
+                    <div class="loading-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scene 1: Villa Entrance with Door -->
+    <section id="entrance-scene" class="scene active">
+        <div class="night-sky">
+            <div class="stars"></div>
+            <div class="moon"></div>
+        </div>
+        <div class="entrance-container">
+            <div class="villa-facade">
+                <div class="villa-roof"></div>
+                <div class="villa-wall">
+                    <div class="wall-texture"></div>
+                    <div class="torch left-torch">
+                        <div class="torch-flame"></div>
+                        <div class="torch-glow"></div>
+                    </div>
+                    <div class="torch right-torch">
+                        <div class="torch-flame"></div>
+                        <div class="torch-glow"></div>
+                    </div>
+                    
+                    <!-- The Grand Wooden Door -->
+                    <div class="door-frame" id="door-frame">
+                        <div class="door-arch"></div>
+                        <div class="door-panel left-door" id="left-door">
+                            <div class="door-wood-grain"></div>
+                            <div class="door-wood-grain"></div>
+                            <div class="door-wood-grain"></div>
+                            <div class="door-panel-design top"></div>
+                            <div class="door-panel-design bottom"></div>
+                            <div class="door-iron-band top-band"></div>
+                            <div class="door-iron-band middle-band"></div>
+                            <div class="door-iron-band bottom-band"></div>
+                            <div class="door-handle-container">
+                                <div class="door-ring"></div>
+                            </div>
+                            <div class="door-rivet r1"></div>
+                            <div class="door-rivet r2"></div>
+                            <div class="door-rivet r3"></div>
+                            <div class="door-rivet r4"></div>
+                        </div>
+                        <div class="door-panel right-door" id="right-door">
+                            <div class="door-wood-grain"></div>
+                            <div class="door-wood-grain"></div>
+                            <div class="door-wood-grain"></div>
+                            <div class="door-panel-design top"></div>
+                            <div class="door-panel-design bottom"></div>
+                            <div class="door-iron-band top-band"></div>
+                            <div class="door-iron-band middle-band"></div>
+                            <div class="door-iron-band bottom-band"></div>
+                            <div class="door-handle-container">
+                                <div class="door-ring"></div>
+                            </div>
+                            <div class="door-rivet r1"></div>
+                            <div class="door-rivet r2"></div>
+                            <div class="door-rivet r3"></div>
+                            <div class="door-rivet r4"></div>
+                        </div>
+                        <div class="door-step"></div>
+                    </div>
+                    
+                    <div class="knock-prompt" id="knock-prompt">
+                        <div class="knock-hand">✊</div>
+                        <span>Tap the Door to Enter</span>
+                        <div class="knock-ripple"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="entrance-floor">
+                <div class="floor-reflection"></div>
+            </div>
+        </div>
+        
+        <!-- Knock Effect -->
+        <div class="knock-effect" id="knock-effect">
+            <div class="knock-wave"></div>
+        </div>
+    </section>
+
+    <!-- Scene 2: Grand Gallery Hall -->
+    <section id="gallery-scene" class="scene">
+        <div class="gallery-atmosphere">
+            <div class="dust-particles"></div>
+            <div class="light-rays"></div>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-header">
+                <div class="chandelier">
+                    <div class="chandelier-chain"></div>
+                    <div class="chandelier-body">
+                        <div class="chandelier-arm a1"><div class="candle"><div class="flame"></div></div></div>
+                        <div class="chandelier-arm a2"><div class="candle"><div class="flame"></div></div></div>
+                        <div class="chandelier-arm a3"><div class="candle"><div class="flame"></div></div></div>
+                        <div class="chandelier-arm a4"><div class="candle"><div class="flame"></div></div></div>
+                        <div class="chandelier-arm a5"><div class="candle"><div class="flame"></div></div></div>
+                    </div>
+                </div>
+                <h1 class="gallery-title">Welcome to the Grand Gallery</h1>
+                <p class="gallery-subtitle">Choose a room to explore the treasures within</p>
+            </div>
+            
+            <div class="rooms-grid">
+                <!-- Awards Room -->
+                <div class="room-card" data-room="awards" onclick="openRoom('awards')">
+                    <div class="room-door-frame">
+                        <div class="room-door">
+                            <div class="room-door-wood"></div>
+                            <div class="room-door-handle"></div>
+                            <div class="room-number">I</div>
+                        </div>
+                    </div>
+                    <div class="room-preview">
+                        <div class="room-icon">🏆</div>
+                        <h3>The Trophy Hall</h3>
+                        <p>Awards & Honors</p>
+                    </div>
+                    <div class="room-glow"></div>
+                </div>
+
+                <!-- Achievements Room -->
+                <div class="room-card" data-room="achievements" onclick="openRoom('achievements')">
+                    <div class="room-door-frame">
+                        <div class="room-door">
+                            <div class="room-door-wood"></div>
+                            <div class="room-door-handle"></div>
+                            <div class="room-number">II</div>
+                        </div>
+                    </div>
+                    <div class="room-preview">
+                        <div class="room-icon">⭐</div>
+                        <h3>The Star Chamber</h3>
+                        <p>Achievements & Milestones</p>
+                    </div>
+                    <div class="room-glow"></div>
+                </div>
+
+                <!-- Experience Room -->
+                <div class="room-card" data-room="experience" onclick="openRoom('experience')">
+                    <div class="room-door-frame">
+                        <div class="room-door">
+                            <div class="room-door-wood"></div>
+                            <div class="room-door-handle"></div>
+                            <div class="room-number">III</div>
+                        </div>
+                    </div>
+                    <div class="room-preview">
+                        <div class="room-icon">📜</div>
+                        <h3>The Chronicle Room</h3>
+                        <p>Experience & Journey</p>
+                    </div>
+                    <div class="room-glow"></div>
+                </div>
+
+                <!-- Projects Room -->
+                <div class="room-card" data-room="projects" onclick="openRoom('projects')">
+                    <div class="room-door-frame">
+                        <div class="room-door">
+                            <div class="room-door-wood"></div>
+                            <div class="room-door-handle"></div>
+                            <div class="room-number">IV</div>
+                        </div>
+                    </div>
+                    <div class="room-preview">
+                        <div class="room-icon">🏗️</div>
+                        <h3>The Workshop</h3>
+                        <p>Projects & Creations</p>
+                    </div>
+                    <div class="room-glow"></div>
+                </div>
+
+                <!-- Gallery Room -->
+                <div class="room-card" data-room="gallery" onclick="openRoom('gallery')">
+                    <div class="room-door-frame">
+                        <div class="room-door">
+                            <div class="room-door-wood"></div>
+                            <div class="room-door-handle"></div>
+                            <div class="room-number">V</div>
+                        </div>
+                    </div>
+                    <div class="room-preview">
+                        <div class="room-icon">🖼️</div>
+                        <h3>The Art Gallery</h3>
+                        <p>Visual Showcase</p>
+                    </div>
+                    <div class="room-glow"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Back to Entrance Button -->
+        <button class="back-btn" onclick="goBackToEntrance()">
+            <span>←</span> Return to Entrance
+        </button>
+    </section>
+
+    <!-- Scene 3: Individual Room Views -->
+    <section id="room-scene" class="scene">
+        <div class="room-atmosphere"></div>
+        <button class="room-back-btn" onclick="goBackToGallery()">
+            <span>←</span> Back to Gallery
+        </button>
+        <div class="room-content-container" id="room-content">
+            <!-- Dynamic content loaded here -->
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
